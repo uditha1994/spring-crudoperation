@@ -62,6 +62,17 @@ public class MenuController {
         return ResponseEntity.notFound().build();
     }
 
+    //Delete Item -
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteItem(@PathVariable int id){
+        boolean removeItem = menu.removeIf(item -> item.getId()==id);
+        if(removeItem){
+            //found and remove
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
 
 
