@@ -43,6 +43,25 @@ public class MenuController {
         return ResponseEntity.ok(newItem);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<MenuLIst> updateItem(
+            @PathVariable  int id,
+            @RequestBody MenuLIst updatedItem
+            ){
+
+        for(MenuLIst item: menu){
+            if(item.getId() == id){
+                //item found
+                item.setName(updatedItem.getName());
+                item.setPrice(updatedItem.getPrice());
+                item.setAvailable(updatedItem.isAvailable());
+
+                return ResponseEntity.ok(item);
+            }
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 }
 
 
