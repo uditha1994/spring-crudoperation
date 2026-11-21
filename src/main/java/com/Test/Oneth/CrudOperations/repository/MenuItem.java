@@ -1,13 +1,25 @@
-package com.Test.Oneth.CrudOperations;
+package com.Test.Oneth.CrudOperations.repository;
 
-public class MenuLIst {
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="menu_items")
+public class MenuItem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false, length = 100)
     private String name;
+
+    @Column(nullable = false)
     private double price;
+
     private boolean available;
 
-    public MenuLIst(int id, String name , double price , boolean available){
-        this.id=id;
+    public MenuItem(){}
+
+    public MenuItem(String name , double price , boolean available){
         this.name=name;
         this.price=price;
         this.available=available;
